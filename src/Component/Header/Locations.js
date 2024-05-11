@@ -9,7 +9,7 @@ const Locations = ({ onClick }) => {
   if (!locations) return null
   return (
     <div className='flex gap-2 items-center flex-wrap'>
-      {locations?.map(({ id, name, icon: { data: { attributes: { url } } } }) => {
+      {locations?.map(({ id, name, icon: { url } }) => {
         return <div onClick={() => {
           //update the location
           dispatch({ type: UPDATE_ACTIVE_LOCATION, payload: name })

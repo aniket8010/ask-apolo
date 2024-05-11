@@ -10,9 +10,9 @@ const initialState = {
 export function HomePageReducer(state = initialState, action) {
     switch (action.type) {
         case UPDATE_DOCTORS_LIST:
-            return { ...state, doctorsList: action.payload, activeDoctorsCategory: action.payload[0]?.name || null }
+            return { ...state, doctorsList: action.payload }
         case UPDATE_ACTIVE_DOCTOR_CATEGORY:
-            return {...state ,activeDoctorsCategory:action.payload}
+            return { ...state, activeDoctorsCategory: action.payload }
         default:
             return state
     }
