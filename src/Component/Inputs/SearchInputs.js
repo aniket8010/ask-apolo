@@ -7,6 +7,8 @@ export const SearchInputs = ({ searchApiCalls }) => {
   const { doctorsList, activeDoctorsCategory } = useSelector(
     (state) => state?.HomePageReducer
   );
+
+  const { activeLocation } = useSelector(state => state?.globalReducer)
   const [searchInput, setSearchInput] = useState("");
   const [showSearchBox, setShowSearchBox] = useState(false);
 
@@ -14,22 +16,22 @@ export const SearchInputs = ({ searchApiCalls }) => {
 
   useEffect(() => {
     if (searchInput) {
-      let query = `filters[name][$contains]=${searchInput}`;
+      let query = `filters[name][$contains]=${searchInput}&filters[hospitals][locations][name]=${activeLocation}`;
       console.log(query)
       const searchTime = setTimeout(() => {
         searchApiCalls(query);
       }, 700);
       return () => clearTimeout(searchTime);
-    } else {
-      searchApiCalls();
+    } else if (activeLocation) {
+      let query = `&filters[hospitals][locations][name]=${activeLocation}`
+      searchApiCalls(query)
     }
-  }, [searchInput, searchApiCalls]);
+  }, [searchInput, searchApiCalls, activeLocation]);
   return (
     <div>
       <div
-        className={`bg-white gap-1 relative top-md items-center ${
-          showSearchBox ? "rounded-t-md" : "rounded-md"
-        } p-1 flex px-4`}
+        className={`bg-white gap-1 relative top-md items-center ${showSearchBox ? "rounded-t-md" : "rounded-md"
+          } p-1 flex px-4`}
       >
         <Search size={16} />
         <input
@@ -67,11 +69,10 @@ export const SearchInputs = ({ searchApiCalls }) => {
                       });
                     }}
                     key={ele.id}
-                    className={` p-2 ${
-                      activeDoctorsCategory === ele?.name
-                        ? "bg-dark-primary text-white"
-                        : "hover:bg-neutral-100"
-                    }  cursor-pointer border-b`}
+                    className={` p-2 ${activeDoctorsCategory === ele?.name
+                      ? "bg-dark-primary text-white"
+                      : "hover:bg-neutral-100"
+                      }  cursor-pointer border-b`}
                   >
                     <div className="flex justify-between items-center">
                       <h6>{ele?.name}</h6>
