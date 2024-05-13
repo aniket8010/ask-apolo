@@ -31,3 +31,23 @@ export const doctorsDetailsServiceList = async (query) => {
         console.log(error.response)
     }
 }
+export const languageList = async () => {
+
+    try {
+        const { data } = await axios.get(`${baseUrl}/languages?fields[0]=name`)
+        return data?.data || []
+
+    } catch (error) {
+        console.log(error.response)
+    }
+}
+export const categoryList = async () => {
+
+    try {
+        const { data } = await axios.get(`${baseUrl}/doctor-categories?fields[0]=name`)
+        return data?.data || []
+
+    } catch (error) {
+        console.log(error.response)
+    }
+}

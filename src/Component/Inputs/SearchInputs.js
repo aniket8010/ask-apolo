@@ -42,7 +42,7 @@ export const SearchInputs = ({ searchApiCalls }) => {
             });
             setSearchInput(event.target.value);
           }}
-          value={activeDoctorsCategory}
+          value={activeDoctorsCategory || []}
           onFocus={() => setShowSearchBox(true)}
           onBlur={() =>
             setTimeout(() => {
