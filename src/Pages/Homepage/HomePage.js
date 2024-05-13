@@ -8,7 +8,6 @@ const Homepage = () => {
         <div className='w-full lg:w-[95%] mx-auto '>
             <Banner />
             <div className='w-[80%] mx-auto'>
-                <h5>Search result (21)</h5>
                 <div className='flex'>
                     <div className="w-full lg:w-[50%]">
                         <div>
