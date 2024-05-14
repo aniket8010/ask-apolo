@@ -17,4 +17,4 @@ const reducer = combineReducers({
 const appPersistReducer = persistReducer(persistConfig, reducer)
 
 export const store = createStore(appPersistReducer)
-let persistor = persistStore(store)
+export let persistor = persistStore(store)

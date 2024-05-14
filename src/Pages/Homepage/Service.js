@@ -51,3 +51,13 @@ export const categoryList = async () => {
         console.log(error.response)
     }
 }
+export const getDoctorDetails = async (id) => {
+
+    try {
+        const { data } = await axios.get(`${baseUrl}/doctors/${id}?populate[avatar][fields][0]=url&populate[doctor_categories][fields][0]=name&populate[hospitals][fields][0]=name&populate[languages][fields][0]=name`)
+        return data?.data || null
+
+    } catch (error) {
+        console.log(error.response)
+    }
+}

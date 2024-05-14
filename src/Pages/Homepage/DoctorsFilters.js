@@ -39,8 +39,8 @@ const DoctorsFilters = () => {
             name: "sort",
             value: doctorsFilter?.sort,
             options: [
-                { id: 1, name: "Experience High-Low" },
-                { id: 2, name: "Experience Low-High" },
+                { id: 0, name: "Experience High-Low" },
+                { id: 1, name: "Experience Low-High" },
             ],
         }, 
     ];

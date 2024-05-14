@@ -27,8 +27,12 @@ const DoctorsdetailsList = () => {
         if (doctorsFilter?.language) {
             query += ` &filters[languages][id][$eq]=${doctorsFilter?.language}`
         }
+        if (doctorsFilter?.sort) {
+            query += `&sort[1]=experience:${doctorsFilter?.sort === "0" ? "desc" : "asc"}`
+        }
+
         mutate(query)
-    }, [mutate, activeLocation, currentPage, doctorsFilter?.category, doctorsFilter?.gender, doctorsFilter?.language])
+    }, [mutate, activeLocation, currentPage, doctorsFilter?.category, doctorsFilter?.gender, doctorsFilter?.language,doctorsFilter?.sort])
 
     const total = useMemo(() => data?.meta?.pagination?.total ?? 0, [data?.meta?.pagination?.total])
 
@@ -39,7 +43,7 @@ const DoctorsdetailsList = () => {
             <DoctorsFilters />
             <h5>Search Result ({total})</h5>
             {data?.data?.map(({ id, ...rest }) => {
-                return <DoctorCard {...rest} key={id} />
+                return <DoctorCard {...rest} id={id} key={id} />
             })}
             <AppPagination currentPage={currentPage} total={total} onPageChnage={(page) => dispatch({ type: UPDATE_CURRENT_PAGE, payload: page })} />
         </div>

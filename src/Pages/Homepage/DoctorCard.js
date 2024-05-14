@@ -1,7 +1,12 @@
 import { GraduationCap, Languages, MapPin } from 'lucide-react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const DoctorCard = ({ name, experience, education, avatar, languages = [], hospitals = [], doctor_categories = [] }) => {
+const DoctorCard = ({ name, id, experience, education, avatar, languages = [], hospitals = [], doctor_categories = [] }) => {
+    const navigate = useNavigate()
+    function doctorDetailsHandler() {
+        navigate(`/doctor-details/${id}`)
+    }
     return (
         <div className='bg-white rounded-md border flex  my-4'>
             <div className='bg-light-success p-2  border-r'>
@@ -10,7 +15,7 @@ const DoctorCard = ({ name, experience, education, avatar, languages = [], hospi
                 </div>
             </div>
             <div className='p-4 border-r w-[30%]'>
-                <div>
+                <div onClick={doctorDetailsHandler} className='cursor-pointer'>
                     <h4 className='text-dark-primary font-semibold text-[13px]'>{name}</h4>
                     <div className='text-xs  text-primary'>
                         <span>Fetal Medicine</span> | {experience} years exp
