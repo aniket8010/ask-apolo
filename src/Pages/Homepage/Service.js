@@ -61,3 +61,13 @@ export const getDoctorDetails = async (id) => {
         console.log(error.response)
     }
 }
+export const getDoctorSlots = async (id) => {
+
+    try {
+        const { data } = await axios.get(`${baseUrl}/slots?[filters][doctor][id][$eq]=${id}&[fields][0]=start&[fields][1]=end&[fields][2]=isAvailable`)
+        return data?.data || null
+
+    } catch (error) {
+        console.log(error.response)
+    }
+}
