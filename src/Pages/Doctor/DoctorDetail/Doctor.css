@@ -37,3 +37,6 @@ blockquote {
 img {
   @apply my-8 object-cover w-full;
 }
+.react-multiple-carousel__arrow--right:hover {
+  background: #106c89;
+}
