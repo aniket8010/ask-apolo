@@ -4,6 +4,7 @@ import { HomePageReducer } from "./HomePage/HomePageReducers";
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
+import { authReducer } from "./Reducers/AuthReduce/authReducer";
 
 const persistConfig = {
     key: "root",
@@ -11,7 +12,8 @@ const persistConfig = {
 }
 const reducer = combineReducers({
     globalReducer,
-    HomePageReducer
+    HomePageReducer,
+    authReducer
 })
 
 const appPersistReducer = persistReducer(persistConfig, reducer)
